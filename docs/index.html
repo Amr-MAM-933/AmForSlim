@@ -1,27 +1,69 @@
 <div id="paypal-button-container"></div>
-<script src="https://www.paypal.com/sdk/js?client-id=AT8_CcJidlA_rUxynCh5oE9fPfQai_VUSAgvz8_8FogY0QZfiav4V56LMRhsc8di3d-oIlM4g37TDfR5&currency=USD" data-sdk-integration-source="button-factory"></script>
+<div id="AM">
+    <script>
+        stM00 = StaticRange;
+        var stMEM00 = [stM00];
+    </script>
+    <script id="AM_State">
+        var setSate = function (price) {
+            paypal.Buttons({
+                style: {
+                    shape: 'rect',
+                    color: 'gold',
+                    layout: 'vertical',
+                    label: 'paypal',
+
+                },
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: price
+                            }
+                        }]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    });
+                }
+            }).render('#paypal-button-container');
+        }
+    </script>
+</div>
+
 <script>
-  paypal.Buttons({
-      style: {
-          shape: 'rect',
-          color: 'gold',
-          layout: 'vertical',
-          label: 'paypal',
-          
-      },
-      createOrder: function(data, actions) {
-          return actions.order.create({
-              purchase_units: [{
-                  amount: {
-                      value: '1.5'
-                  }
-              }]
-          });
-      },
-      onApprove: function(data, actions) {
-          return actions.order.capture().then(function(details) {
-              alert('Transaction completed by ' + details.payer.name.given_name + '!');
-          });
-      }
-  }).render('#paypal-button-container');
+    stMEM00[16] = function (){
+        stMEM00[18] = document.URL.indexOf('?');
+        stMEM00[17] = new Array();
+        if (stMEM00[18] != -1) {
+            var pairs = document.URL.substring(stMEM00[18] + 1, document.URL.length).split('&');
+            for (var i = 0; i < pairs.length; i++) {
+                nameVal = pairs[i].split('=');
+                stMEM00[17][nameVal[0]] = nameVal[1];
+            }
+        }
+        return stMEM00[17];
+    }
+    stMEM00[15] = stMEM00[16]();
+    stMEM00[0] = '</' + 'script>';
+    stMEM00[1] = stMEM00[15]['AM_id'];
+    stMEM00[2] = stMEM00[15]['AM_amount'];
+    stMEM00[3] = 'https://www.paypal.com/sdk/js?client-id=' + stMEM00[1] + '&currency=USD';
+    stMEM00[4] = 'button-factory';
+    stMEM00[7] = 'data-sdk-integration-source';
+    stMEM00[13] = document.createElement('script');
+    stMEM00[13].src = stMEM00[3];
+    stMEM00[13].setAttribute(stMEM00[7], stMEM00[4]);
+    stMEM00[14] = document.createElement('div');
+    stMEM00[14].append(stMEM00[13]);
+    stMEM00[8] = 'setSate(stMEM00[2]);';
+    stMEM00[9] = document.getElementById('AM_State');
+    stMEM00[10] = stMEM00[9].textContent;
+    stMEM00[11] = stMEM00[10] + stMEM00[8];
+    stMEM00[12] = document.createElement('script');
+    stMEM00[12].textContent = stMEM00[11];
+    stMEM00[14].appendChild(stMEM00[12]);
+    document.writeln(stMEM00[14].innerHTML);
 </script>
