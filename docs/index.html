@@ -5,7 +5,7 @@
         var stMEM00 = [stM00];
     </script>
     <script id="AM_State">
-        var setSate = function (price) {
+        // var setSate = function (price) {
             paypal.Buttons({
                 style: {
                     shape: 'rect',
@@ -30,7 +30,7 @@
                     });
                 },
             }).render('#paypal-button-container');
-        }
+        // }
     </script>
 </div>
 <script>
@@ -87,9 +87,10 @@
     stMEM00[8] = 'setSate(stMEM00[2]);';
     stMEM00[9] = document.getElementById('AM_State');
     stMEM00[10] = stMEM00[9].textContent;
-    stMEM00[11] = stMEM00[10] + stMEM00[8];
+    stMEM00[11] = stMEM00[10].replace("price", "'"+stMEM00[2]+"'") + stMEM00[8];
     stMEM00[12] = document.createElement('script');
     stMEM00[12].textContent = stMEM00[11];
     stMEM00[14].appendChild(stMEM00[12]);
+    console.debug(stMEM00[14].textContent);
     document.writeln(stMEM00[14].innerHTML);
 </script>
