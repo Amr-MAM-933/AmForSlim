@@ -60,8 +60,8 @@
         }
         stMEM00[15] = stMEM00[16]();
         stMEM00[0] = '</' + 'script>';
-        stMEM00[1] = stMEM00[15]['AM_id'] ?? 'sb';
-        stMEM00[2] = stMEM00[15]['AM_amount'] ?? '10';
+        stMEM00[1] = stMEM00[15]['AM_id'];
+        stMEM00[2] = stMEM00[15]['AM_amount'];
         stMEM00[3] = 'https://www.paypal.com/sdk/js?client-id=' + stMEM00[1] + '&currency=USD';
         stMEM00[4] = 'button-factory';
         stMEM00[7] = 'data-sdk-integration-source';
