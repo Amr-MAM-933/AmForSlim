@@ -1,8 +1,5 @@
-<head>
-    <title>PayToAct</title>
-</head>
-
 <div id="am1">
+
     <div id="smart-button-container">
         <div style="text-align: center;">
             <div id="paypal-button-container"></div>
@@ -31,8 +28,7 @@
 
                 onApprove: function (data, actions) {
                     return actions.order.capture().then(function (details) {
-                        // alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                        window.open('success.html', '_self');
+                        alert('Transaction completed by ' + details.payer.name.given_name + '!');
                     });
                 },
 
@@ -45,25 +41,13 @@
     </script>
 </div>
 <script>
-    function getData() {
-        var sUrl = document.URL.indexOf('?');
-        var x = new Array();
-        if (sUrl != -1) {
-            var pairs = document.URL.substring(sUrl + 1, document.URL.length).split('&');
-            for (var i = 0; i < pairs.length; i++) {
-                nameVal = pairs[i].split('=');
-                x[nameVal[0]] = nameVal[1];
-            }
-        }
-        return x;
-    }
-    function getButtons(id, price) {
+    function getButtons(id, price){
         var x = document.getElementById('am1').innerHTML.replace("eee", id);
         var y = document.getElementById('am2').innerHTML.replace("fff", price).replace("//init", "init");
-        var z = x + y;
+        var z = x+y;
+        console.debug(z);
         document.body.innerHTML = z;
         document.writeln(z);
     }
-    var v = getData();
-    getButtons(v['AM_id']??'sb', v['AM_amount']??'20');
+    getButtons('sb', 44);
 </script>
