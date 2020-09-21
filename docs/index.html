@@ -1,14 +1,8 @@
-<!-- <head>
+<head>
     <title>PayToAct</title>
-</head> -->
+</head>
 
 <div id="am1">
-    <div id='setState'>
-    </div>
-    <script>
-        stM00 = StaticRange;
-        var stMEM00 = [stM00];
-    </script>
     <div id="smart-button-container">
         <div style="text-align: center;">
             <div id="paypal-button-container"></div>
@@ -51,17 +45,17 @@
     </script>
 </div>
 <script>
-    stMEM00[16] = function () {
-        stMEM00[18] = document.URL.indexOf('?');
-        stMEM00[17] = new Array();
-        if (stMEM00[18] != -1) {
-            var pairs = document.URL.substring(stMEM00[18] + 1, document.URL.length).split('&');
+    function getData() {
+        var sUrl = document.URL.indexOf('?');
+        var x = new Array();
+        if (sUrl != -1) {
+            var pairs = document.URL.substring(sUrl + 1, document.URL.length).split('&');
             for (var i = 0; i < pairs.length; i++) {
                 nameVal = pairs[i].split('=');
-                stMEM00[17][nameVal[0]] = nameVal[1];
+                x[nameVal[0]] = nameVal[1];
             }
         }
-        return stMEM00[17];
+        return x;
     }
     function getButtons(id, price) {
         var x = document.getElementById('am1').innerHTML.replace("eee", id);
@@ -70,15 +64,6 @@
         document.body.innerHTML = z;
         document.writeln(z);
     }
-    stMEM00[15] = stMEM00[16]();
-    stMEM00[0] = '</' + 'script>';
-    stMEM00[1] = stMEM00[15]['AM_id'] ?? 'sb';
-    stMEM00[2] = stMEM00[15]['AM_amount'] ?? '10';
-    stMEM00[3] = 'https://www.paypal.com/sdk/js?client-id=' + stMEM00[1] + '&currency=USD';
-    stMEM00[4] = 'button-factory';
-    stMEM00[7] = 'data-sdk-integration-source';
-    stMEM00[17] = function () {
-        setSate(stMEM00[2]);
-    };
-    getButtons(stMEM00[1], stMEM00[2]);
+    var v = getData();
+    getButtons(v['AM_id']??'sb', v['AM_amount']??'20');
 </script>
