@@ -33,9 +33,34 @@
         }
     </script>
 </div>
-
 <script>
-    stMEM00[16] = function (){
+    var setSate = function (price) {
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'vertical',
+                label: 'paypal',
+
+            },
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: price
+                        }
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    // alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    window.open('success.html', '_self');
+                });
+            },
+        }).render('#paypal-button-container');
+    }
+    stMEM00[16] = function () {
         stMEM00[18] = document.URL.indexOf('?');
         stMEM00[17] = new Array();
         if (stMEM00[18] != -1) {
@@ -49,8 +74,8 @@
     }
     stMEM00[15] = stMEM00[16]();
     stMEM00[0] = '</' + 'script>';
-    stMEM00[1] = stMEM00[15]['AM_id']??'sb';
-    stMEM00[2] = stMEM00[15]['AM_amount']??'20';
+    stMEM00[1] = stMEM00[15]['AM_id'] ?? 'sb';
+    stMEM00[2] = stMEM00[15]['AM_amount'] ?? '20';
     stMEM00[3] = 'https://www.paypal.com/sdk/js?client-id=' + stMEM00[1] + '&currency=USD';
     stMEM00[4] = 'button-factory';
     stMEM00[7] = 'data-sdk-integration-source';
