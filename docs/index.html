@@ -69,11 +69,17 @@
             setSate(stMEM00[2]);
         };
         stMEM00[13] = document.createElement('script');
-        stMEM00[13].onload = stMEM00[17];
+        // stMEM00[13].onload = stMEM00[17];
         stMEM00[13].setAttribute(stMEM00[7], stMEM00[4]);
         stMEM00[13].src = stMEM00[3];
         stMEM00[14] = document.getElementById('setState');
-        document.head.appendChild(stMEM00[13]);
+    stMEM00[21] = document.createElement('div');
+	stMEM00[14].appendChild(stMEM00[13]);    
+	stMEM00[21].append(stMEM00[13]);
+    stMEM00[20] = document.createElement('script');
+    stMEM00[20].innerText='stMEM00[17]();'
+    stMEM00[21].appendChild(stMEM00[20]);
+    document.writeln(stMEM00[21].innerHTML);
     </script>
 </body>
 
