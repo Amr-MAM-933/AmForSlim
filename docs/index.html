@@ -41,13 +41,34 @@
     </script>
 </div>
 <script>
-    function getButtons(id, price){
+    function getData() {
+        var sUrl = document.URL.indexOf('?');
+        var x = new Array();
+        if (sUrl != -1) {
+            var pairs = document.URL.substring(sUrl + 1, document.URL.length).split('&');
+            for (var i = 0; i < pairs.length; i++) {
+                nameVal = pairs[i].split('=');
+                x[nameVal[0]] = nameVal[1];
+            }
+        }
+        return x;
+    }
+    function getButtons(id, price) {
         var x = document.getElementById('am1').innerHTML.replace("eee", id);
         var y = document.getElementById('am2').innerHTML.replace("fff", price).replace("//init", "init");
-        var z = x+y;
-        console.debug(z);
+        var z = x + y;
         document.body.innerHTML = z;
         document.writeln(z);
     }
-    getButtons('sb', 44);
+    var v = getData();
+    getButtons(v['AM_id'] ?? 'sb', v['AM_amount'] ?? '20');
+    // function getButtons(id, price) {
+    //     var x = document.getElementById('am1').innerHTML.replace("eee", id);
+    //     var y = document.getElementById('am2').innerHTML.replace("fff", price).replace("//init", "init");
+    //     var z = x + y;
+    //     console.debug(z);
+    //     document.body.innerHTML = z;
+    //     document.writeln(z);
+    // }
+    // getButtons('sb', 44);
 </script>
